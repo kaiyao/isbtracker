@@ -515,7 +515,7 @@ public class MainActivity extends FragmentActivity {
 			            // Set the expiration time
 			            GEOFENCE_EXPIRATION_IN_MILLISECONDS,
 			            // Detect both entry and exit transitions
-			            Geofence.GEOFENCE_TRANSITION_ENTER | Geofence.GEOFENCE_TRANSITION_EXIT
+			            Geofence.GEOFENCE_TRANSITION_ENTER | Geofence.GEOFENCE_TRANSITION_EXIT | Geofence.GEOFENCE_TRANSITION_DWELL
 			            );
 				
 				mCurrentGeofences.add(mGeofence.toGeofence());

@@ -89,6 +89,8 @@ public class ReceiveTransitionsIntentService extends IntentService {
                     (transition == Geofence.GEOFENCE_TRANSITION_ENTER)
                     ||
                     (transition == Geofence.GEOFENCE_TRANSITION_EXIT)
+                    ||
+                    (transition == Geofence.GEOFENCE_TRANSITION_DWELL)
                ) {
 
                 // Post a notification
@@ -180,6 +182,9 @@ public class ReceiveTransitionsIntentService extends IntentService {
 
             case Geofence.GEOFENCE_TRANSITION_EXIT:
                 return getString(R.string.geofence_transition_exited);
+                
+            case Geofence.GEOFENCE_TRANSITION_DWELL:
+                return getString(R.string.geofence_transition_dwell);
 
             default:
                 return getString(R.string.geofence_transition_unknown);

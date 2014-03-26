@@ -131,6 +131,7 @@ public class SimpleGeofence {
                                getRadius())
                        .setExpirationDuration(mExpirationDuration)
                        .setNotificationResponsiveness (5000)
+                       .setLoiteringDelay(5000)
                        .build();
     }
 }

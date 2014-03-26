@@ -111,4 +111,5 @@
     <!-- Number patterns -->
     <string name="lat_lng_pattern">* ###.00000000;* -###.00000000</string>
     <string name="radius_pattern">* #.0000</string><string name="log_filename">%1$s%2$s%3$d%4$s</string>
+    <string name="geofence_transition_dwell">Dwelling</string>
 </resources>
