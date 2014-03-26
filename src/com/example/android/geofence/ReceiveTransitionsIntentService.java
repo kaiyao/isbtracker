@@ -14,6 +14,9 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.text.TextUtils;
 import android.util.Log;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -22,6 +25,9 @@ import java.util.List;
  * the event.
  */
 public class ReceiveTransitionsIntentService extends IntentService {
+	
+	private static final String LOG_DELIMITER = ";;";
+	private SimpleDateFormat mDateFormat;
 
     /**
      * Sets an identifier for this class' background thread
@@ -43,6 +49,13 @@ public class ReceiveTransitionsIntentService extends IntentService {
 
         // Give it the category for all intents sent by the Intent Service
         broadcastIntent.addCategory(GeofenceUtils.CATEGORY_LOCATION_SERVICES);
+        
+        // Get a date formatter, and catch errors in the returned timestamp
+        try {
+            mDateFormat = (SimpleDateFormat) DateFormat.getDateTimeInstance();
+        } catch (Exception e) {
+            Log.e(ActivityUtils.APPTAG, "Date Format Error");
+        }
 
         // First check for errors
         if (LocationClient.hasError(intent)) {
@@ -142,6 +155,9 @@ public class ReceiveTransitionsIntentService extends IntentService {
                                transitionType, ids))
                .setContentText(getString(R.string.geofence_transition_notification_text))
                .setContentIntent(notificationPendingIntent);
+        
+        logGeofenceResult(getString(R.string.geofence_transition_notification_title,
+                               transitionType, ids));
 
         // Get an instance of the Notification manager
         NotificationManager mNotificationManager =
@@ -168,5 +184,17 @@ public class ReceiveTransitionsIntentService extends IntentService {
             default:
                 return getString(R.string.geofence_transition_unknown);
         }
+    }
+    
+    private void logGeofenceResult(String text) {
+        // Make a timestamp
+        String timeStamp = mDateFormat.format(new Date());
+
+        // Get the current log file or create a new one, then log the activity
+        LogFile.getInstance(getApplicationContext()).log(
+            timeStamp +
+            LOG_DELIMITER +
+            text
+        );
     }
 }
