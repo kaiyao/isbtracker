@@ -20,7 +20,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="5dp"
-    tools:context=".MainActivity" >
+    tools:context=".MainActivity"
+    android:fillViewport="false">
 
     <LinearLayout
         android:id="@+id/LinearLayout1"
@@ -44,6 +45,20 @@
             android:layout_height="wrap_content"
             android:onClick="onUnregisterByPendingIntentClicked"
             android:text="@string/unregister_geofence" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Start service"
+            android:layout_gravity="center_horizontal"
+            android:onClick="startTrackingService"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Stop service"
+            android:layout_gravity="center_horizontal"
+            android:onClick="stopTrackingService"/>
     </LinearLayout>
 
 </ScrollView>

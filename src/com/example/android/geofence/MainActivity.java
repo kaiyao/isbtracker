@@ -647,4 +647,14 @@ public class MainActivity extends FragmentActivity {
             return mDialog;
         }
     }
+
+    public void startTrackingService(View view) {
+        Intent intent = new Intent(this, TrackerService.class);
+        startService(intent);
+    }
+
+    public void stopTrackingService(View view) {
+        Intent intent = new Intent(this, TrackerService.class);
+        stopService(intent);
+    }
 }
